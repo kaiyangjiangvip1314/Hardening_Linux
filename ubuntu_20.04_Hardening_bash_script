@@ -238,7 +238,7 @@ echo "CIS Rule: 2.1 Special Purpose Service"
 echo "CIS Rule: 2.1.1 Time Synchronization"
 echo "CIS Rule: 2.1.1.1 Ensure time synchronization is in use... SKIPPING as timesyncd.service is using"
 echo -e "CIS Rule: 2.1.1.2 Ensure systemd-timesyncd is configured..."
-apt purge ntp -y 2>dev/null
+apt purge ntp -y 2>/dev/null
 apt purge chrony -y 2>/dev/null
 cat > /etc/systemd/timesyncd.conf << "EOF"
 [Time]
@@ -274,7 +274,7 @@ for i in ${SERVICES[@]}
 do
 systemctl stop $i.service 2>/dev/null
 systemctl stop $i.socket 2>/dev/null
-apt purge $i 2>dev/null
+apt purge $i 2>/dev/null
 done
 echo "CIS Rule: 2.1.15 Ensure mail transfer agent is configured for local-only mode.. SKIPPING as MTA is by default not installed"
 cls
